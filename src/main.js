@@ -8,10 +8,11 @@ Vue.use(VueRouter)
 
 // 0. 如果使用模块化机制编程，导入Vue和VueRouter，要调用 Vue.use(VueRouter)
 
-import HomePage from "./page/home.vue"
+
 
 // 1. 定义 (路由) 组件。
 // 可以从其他文件 import 进来
+/*
 const Foo = { template: '<div>foo</div>' }
 const Bar = { template: '<div>bar</div>' }
 
@@ -31,6 +32,16 @@ const routes = [
 const router = new VueRouter({
   routes // (缩写) 相当于 routes: routes
 })
+
+*/
+import routes from "./route/route"
+
+const router = new VueRouter({
+  routes:routes.items // (缩写) 相当于 routes: routes
+})
+
+
+
 
 // 4. 创建和挂载根实例。
 // 记得要通过 router 配置参数注入路由，
