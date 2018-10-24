@@ -48,7 +48,16 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     noInfo: true,
-    overlay: true
+    overlay: true,
+    proxy : { 		
+      '/apis': {
+             target: 'http://192.168.199.105',
+             changeOrigin: true,
+             pathRewrite: {
+                     '^/apis': ''
+                     }
+         }
+       }
   },
   performance: {
     hints: false

@@ -1,7 +1,16 @@
 import Vue from 'vue'
 import App from './App.vue'
 
+import Vuex from 'vuex' 
+Vue.use(Vuex)
+
  
+import store from './vuex/store'
+
+import VueResource from 'vue-resource'
+Vue.use(VueResource) 
+
+
 import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
@@ -50,6 +59,7 @@ const router = new VueRouter({
 // 现在，应用已经启动了！
 new Vue({
   el: '#app',
+  store,
   router,
   render: h => h(App)
 })

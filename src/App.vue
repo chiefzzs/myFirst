@@ -22,6 +22,7 @@
 
 <script>
 import routes from "./route/route"
+import { mapState, mapMutations } from 'vuex'
 
 export default {
   name: 'app',
@@ -30,7 +31,41 @@ export default {
       msg: 'Welcome to Your Vue.js App',
       routes:routes.items
     }
-  }
+  },methods:{
+     ...mapMutations(['get','post','delete','put']), //引入方法
+      init:function(){
+      let _this = this;
+      _this.get({
+        url:"/api/demo/cgi/db/db.py?op=query&filter={%22table%22:%22demo%22}",
+        success(success) {
+          console.log("成功",success)
+        },
+        error(error) {
+          console.log("错误",error)
+        }
+      });
+    },
+    test:function(){
+       var url="/apis/demo/cgi/db/db.py"
+
+       this.$http.get(url,{
+         params:{
+            op:"query",
+            filter:"{\"table\":\"demo\"}"
+
+         }
+       })
+        .then((success)=>{
+          console.log("成功",success)
+        })
+        .catch((error)=>{
+          console.log("失败",error)
+        })
+    }
+  },  created:function(){
+      this.test()
+    }
+ 
 }
 </script>
 
