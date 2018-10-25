@@ -1,5 +1,12 @@
 # my-first
 
+# 完成基础框架
+# 完成菜单
+# 完成表格测试
+# todo 完成数据库--表格
+# todo 完成可配置表格
+# todo 完成自定义表格
+
 > A Vue.js project
 
 ## Build Setup
