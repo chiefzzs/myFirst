@@ -64,7 +64,7 @@ import menus from "./route/route"
 const routes =  []
 
 menus.items.forEach((item) => {
-     
+  //存在下级节点则不能注册，否则找不到下级节点 
   if(item.children){
     item.children.forEach((sub) => {
       routes.push( sub)
