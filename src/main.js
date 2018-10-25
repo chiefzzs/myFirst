@@ -11,8 +11,11 @@ import VueResource from 'vue-resource'
 Vue.use(VueResource) 
 
 
-import VueRouter from 'vue-router'
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+Vue.use(ElementUI)
 
+import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 // 0. 如果使用模块化机制编程，导入Vue和VueRouter，要调用 Vue.use(VueRouter)
@@ -43,11 +46,27 @@ const router = new VueRouter({
 })
 
 */
-import routes from "./route/route"
+import menus from "./route/route"
 
-const router = new VueRouter({
-  routes:routes.items // (缩写) 相当于 routes: routes
+const routes =  []
+
+menus.items.forEach((item) => {
+     
+  if(item.children){
+    item.children.forEach((sub) => {
+      routes.push( sub)
+    })
+  }else{
+    routes.push(item) 
+  }
+ 
 })
+
+
+const router= new VueRouter({
+  routes  // (缩写) 相当于 routes: routes
+})
+
 
 
 
