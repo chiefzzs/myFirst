@@ -20,7 +20,20 @@ Vue.use(VueRouter)
 
 // 0. 如果使用模块化机制编程，导入Vue和VueRouter，要调用 Vue.use(VueRouter)
 
+//region  1. table
+// 引入样式
+import 'vue-easytable/libs/themes-base/index.css'
+// 导入 table 和 分页组件
+import {VTable,VPagination} from 'vue-easytable'
 
+// 注册到全局
+Vue.component(VTable.name, VTable)
+Vue.component(VPagination.name, VPagination)
+//endregion
+
+//region  1. table
+import baseTableOpration from "./components/baseTableOpration"
+//endregion
 
 // 1. 定义 (路由) 组件。
 // 可以从其他文件 import 进来

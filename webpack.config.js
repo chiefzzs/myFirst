@@ -51,7 +51,7 @@ module.exports = {
     overlay: true,
     proxy : { 		
       '/apis': {
-             target: 'http://192.168.199.105',
+             target: 'http://127.0.0.1',
              changeOrigin: true,
              pathRewrite: {
                      '^/apis': ''
