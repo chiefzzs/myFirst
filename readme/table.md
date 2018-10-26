@@ -9,9 +9,11 @@ graph LR
  a[表格]
  b[通用表格]
  c[依据数据库自动加载表格]
+ c.1[数据库访问service]
  d[可自定义列方式]
  a-->b
  b-->c
+ c-->c.1
  b-->d
 
 ```
@@ -19,8 +21,9 @@ graph LR
 ## 流程图举例说明
 ```mermaid
 sequenceDiagram
-    Activity ->> ContextWrapper : registerReceiver()
-    ContextWrapper ->> ContextImpl : registerReceiver()
+    app ->> 自定义控件 : 加载()
+    自定义控件 ->> 通用表格控件 : 加载
+    
 
 
 ```

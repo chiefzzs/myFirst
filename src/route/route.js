@@ -11,8 +11,8 @@ const SubBar = { template: '<div>bar2</div>' }
 // 我们晚点再讨论嵌套路由。
 import HomePage from "../page/home.vue"
 import DemoTablePage from "../page/demoTable.vue"
-
 import testBaseTable from "../test/testBaseTable"
+import testDbService from "../test/testDbService"
 
 export default {
        items:[{
@@ -22,7 +22,12 @@ export default {
                     name:"基础表格测试",
                     path:"/test/baseTable",
                     component:testBaseTable
-                }]
+                },{
+                    name:"基础数据库测试",
+                    path:"/test/testDbService",
+                    component:testDbService
+                },
+            ]
               },{
                 name:"bar",
                 path:"/bar" , 
