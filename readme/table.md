@@ -3,20 +3,27 @@
 
 ## 练习步骤
 
-```mermaid
+```nomoml
 
-graph LR
- a[表格]
- b[通用表格]
- c[依据数据库自动加载表格]
- c.1[数据库访问service]
- d[可自定义列方式]
- a-->b
- b-->c
- c-->c.1
- b-->d
-
+[baseTable|
+[gui]
+[memory]
+[db]
+]
 ```
+
+```nomnoml
+[<frame>Decorator pattern|
+  [<abstract>Component||+ operation()]
+  [Client] depends --> [Component]
+  [Decorator|- next: Component]
+  [Decorator] decorates -- [ConcreteComponent]
+  [Component] <:- [Decorator]
+  [Component] <:- [ConcreteComponent]
+]
+```
+
+
 
 ## 流程图举例说明
 ```mermaid

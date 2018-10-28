@@ -18,7 +18,7 @@ export default {
                 filter:filter,
              }
          }).then((res) => {
-            cb(res.data);
+            cb(res.data.msg);
             
         } ,(res) => {
             err(res)
@@ -44,7 +44,7 @@ export default {
        }) 
     },update:function(table,id_name,value,data,cb,err){         
         let filter={
-            "table":table,            
+            "table":table,                        
         }
         filter[id_name] = value
 
@@ -54,7 +54,7 @@ export default {
 
         Vue.http.get(this.baseurl,{
             params:{
-               op:"add",
+               op:"update",
                filter:JSON.stringify(filter),
                data:JSON.stringify(data),
             }

@@ -35,6 +35,8 @@ Vue.component(VPagination.name, VPagination)
 import baseTableOpration from "./components/baseTableOpration"
 //endregion
 
+window.lodash= require('lodash');
+
 // 1. 定义 (路由) 组件。
 // 可以从其他文件 import 进来
 /*

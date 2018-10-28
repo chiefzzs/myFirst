@@ -13,7 +13,7 @@ import HomePage from "../page/home.vue"
 import DemoTablePage from "../page/demoTable.vue"
 import testBaseTable from "../test/testBaseTable"
 import testDbService from "../test/testDbService"
-
+import baseDbTable from "../components/baseDbTable"
 export default {
        items:[{
                 name:"基础测试",      
@@ -26,6 +26,10 @@ export default {
                     name:"基础数据库测试",
                     path:"/test/testDbService",
                     component:testDbService
+                },{
+                    name:"baseDbTable测试",
+                    path:"/test/baseDbTable",
+                    component:baseDbTable
                 },
             ]
               },{
