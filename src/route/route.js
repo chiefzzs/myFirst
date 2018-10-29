@@ -31,48 +31,33 @@ export default {
                 },{
                     name:"基础数据库测试",
                     path:"/test/testDbService",
-                    component:testDbService
+                    componentName:"testDbService"
                 },{
                     name:"baseDbTable测试",
-                    path:"/test/baseDbTable",
-                    component:baseDbTable
+                    path:"/components/baseDbTable",
+                    componentName:"baseDbTable"
                 },{
                     name:"testDbTable测试",
-                    path:"/test/testDbTable",
-                    component:testBaseDbTable
+                    path:"/test/testBaseDbTable",
+                    componentName:"testBaseDbTable"
                 },{
                     name:"testtree",
-                    path:"/test/testtree",
-                    component:testTree
+                    path:"/test/testTree",
+                    componentName:"testTree"
                 },{
                     name:"testtree1",
-                    path:"/test/testtree1",
-                    component:testTree1
+                    path:"/test/testTree1",
+                    componentName:"testTree1"
                 },{
                     name:"testtree2",
-                    path:"/test/testtree2",
-                    component:testTree2
+                    path:"/test/testTree2",
+                    componentName:"testTree2"                    
                 },
             ]
-              },{
-                name:"bar",
-                path:"/bar" , 
-                children:[
-                    {
-                        name:"bar1",
-                        path:"/bar/a" , 
-                        component: Bar 
-                    },
-                    {
-                        name:"bar2",
-                        path:"/bar/b" , 
-                        component: SubBar 
-                    }
-                ],        
-            },{
+              } ,{
                 name:"表格测试",
-                path:"/page/demotable" , 
-                component: DemoTablePage
+                path:"/page/demoTable" , 
+                componentName: "DemoTablePage"
             }
         ] 
 }
