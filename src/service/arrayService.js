@@ -37,22 +37,20 @@ function setTreeData(data){
 }
 
 
-function convert_tree_data(data) {
-    let ret=[]
-
-    for (var i = 0; i < data.length; i++) {
-        if (data[i].children != undefined) {
-            var temp = data[i].children;
-            // 删除孩子节点
-            //delete data[i].children;
-
-            // 孩子节点加入数组末尾
-            for (var j = 0; j < temp.length; j++) {
-                data.push(temp[j]);
-            }
+function flatten(array){
+    var result = [];
+	var toStr = Object.prototype.toString;
+    for(var i=0;i<array.length;i++){
+		var element = array[i];
+        if(toStr.call(element) === "[object Array]"){
+            result = result.concat(flatten(element));
+        }
+        else{
+            result.push(element);
         }
     }
-
-    return data;
+    return result;
 }
+ 
+
  

@@ -25,8 +25,9 @@ export default {
                 path:"/test"  ,
                 children:[{
                     name:"基础表格测试",
-                    path:"/test/baseTable",
-                    component:testBaseTable
+                    path:"/test/testBaseTable",
+                    componentName:"testBaseTable",                    
+                    //component:testBaseTable
                 },{
                     name:"基础数据库测试",
                     path:"/test/testDbService",

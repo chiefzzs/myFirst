@@ -38,7 +38,7 @@ import vueztree from 'vue-ztree-2.0/dist/vue-ztree-2.0.umd.min.js'
 import 'vue-ztree-2.0/dist/vue-ztree-2.0.css'
 
 Vue.use(vueztree)
- 
+
 
 //region  1. table
 import baseTableOpration from "./components/baseTableOpration"
@@ -74,13 +74,24 @@ import menus from "./route/route"
 
 const routes =  []
 
+
+function loadComp(sub){
+  if(sub.componentName && sub.path){
+    sub.component= resolve => require(['.'+sub.path], resolve)
+  }
+}
+
 menus.items.forEach((item) => {
   //存在下级节点则不能注册，否则找不到下级节点 
+ 
+
   if(item.children){
     item.children.forEach((sub) => {
+      loadComp(sub)
       routes.push( sub)
     })
   }else{
+    loadComp(item)
     routes.push(item) 
   }
  
