@@ -14,6 +14,11 @@ import DemoTablePage from "../page/demoTable.vue"
 import testBaseTable from "../test/testBaseTable"
 import testDbService from "../test/testDbService"
 import baseDbTable from "../components/baseDbTable"
+import testBaseDbTable from "../test/testBaseDbTable"
+import testTree from '../test/testTree';
+import testTree1 from '../test/testTree1';
+import testTree2 from '../test/testTree2';
+
 export default {
        items:[{
                 name:"基础测试",      
@@ -30,6 +35,22 @@ export default {
                     name:"baseDbTable测试",
                     path:"/test/baseDbTable",
                     component:baseDbTable
+                },{
+                    name:"testDbTable测试",
+                    path:"/test/testDbTable",
+                    component:testBaseDbTable
+                },{
+                    name:"testtree",
+                    path:"/test/testtree",
+                    component:testTree
+                },{
+                    name:"testtree1",
+                    path:"/test/testtree1",
+                    component:testTree1
+                },{
+                    name:"testtree2",
+                    path:"/test/testtree2",
+                    component:testTree2
                 },
             ]
               },{

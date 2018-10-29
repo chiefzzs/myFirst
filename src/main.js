@@ -31,6 +31,15 @@ Vue.component(VTable.name, VTable)
 Vue.component(VPagination.name, VPagination)
 //endregion
 
+ 
+
+// 注册到全局
+import vueztree from 'vue-ztree-2.0/dist/vue-ztree-2.0.umd.min.js'
+import 'vue-ztree-2.0/dist/vue-ztree-2.0.css'
+
+Vue.use(vueztree)
+ 
+
 //region  1. table
 import baseTableOpration from "./components/baseTableOpration"
 //endregion

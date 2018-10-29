@@ -40,7 +40,7 @@ export default {
       err(data){
         console.log("dbtable default err",data)
       },
-      add(cb,err){
+      add(index,cb,err){
           if(!err){
             err = this.err
           }
@@ -48,7 +48,7 @@ export default {
 
           dbService.add(this.table,{},function(data){            
             let row  = lodash.merge({},therow,data.msg)
-            cb(row)
+            cb(index,row)
           },err)
       },
       update(row,cb,err){

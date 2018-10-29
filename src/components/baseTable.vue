@@ -5,7 +5,7 @@
      <div class="tab-opra-btn">
          <el-header style="text-align: right; font-size: 12px">
          <el-button-group>
-            <el-button type="primary" icon="el-icon-plus"   @click="guiAdd">增加</el-button>
+            <el-button type="primary" icon="el-icon-plus"   @click="guiAdd(0)">增加</el-button>
             <el-button type="success" icon="el-icon-check"    @click="guiSaveTable">保存</el-button>
            </el-button-group> 
             </el-header>  
@@ -60,7 +60,8 @@
             return {
                tableSetting:{},
                newRow:{},
-               theColumns:[]
+               theColumns:[],
+               isModify:false,
             }
         },
         methods:{
@@ -85,15 +86,28 @@
 
                 // 接下来处理你的业务逻辑，数据持久化等...
             },
-            add(data){
-               this.tableData.unshift(data) ;
+            add(index,data){
+                this.tableData.splice(index,0,data)             
             },
-            guiAdd(){
+            
+            guiAdd(index ,cb){                             
+               
                if(this.tableSetting.callback && this.tableSetting.callback.add) {
-                   this.tableSetting.callback.add( this.add)
+                   
+                   if(cb){
+                       this.tableSetting.callback.add( index, cb)
+                   }else{
+                       this.tableSetting.callback.add( index, this.add)
+                   }
+
                }else{
-                       this.tableData.unshift(lodash.merge({},this.newRow));
+                    if(cb){
+                        cb(index,lodash.merge({},this.newRow))   
+                    }else{
+                        this.add( index, lodash.merge({},this.newRow));                 
+                    }                   
                }
+              
             },
             guiSaveTable(){
                if(this.tableSetting.callback && this.tableSetting.callback.saveTable) {
@@ -106,6 +120,11 @@
             delete(index){
                 this.$delete(this.tableData,index);
             },
+            swapItems : function(arr, index1, index2) {
+                arr[index1] = arr.splice(index2, 1, arr[index1])[0];
+                return arr;
+            },
+
             customCompFunc(params){
 
                 console.log(params);
@@ -124,11 +143,56 @@
                     }
                     
 
-                }else if (params.type === 'edit'){ // do edit operation
-
-                    alert(`行号：${params.index} 姓名：${params.rowData['name']}`)
+                }
+                if (params.type === 'edit'){ // do edit operation
+                    //alert(`行号：${params.index} 姓名：${params.rowData['name']}`)
                 }
 
+                if (params.type === 'add'){ // do edit operation
+                    //alert(`行号：${params.index} 姓名：${params.rowData['name']}`)
+                    this.guiAdd(params.index)
+                }
+
+                if (params.type === 'copy'){ // do edit operation
+                    //alert(`行号：${params.index} 姓名：${params.rowData['name']}`)
+                      let curRow = {}
+
+                      for(var p in this.newRow ){
+                        curRow[p] = this.tableData[params.index][p]
+                      }
+                      let theAdd = this.add
+                      this.guiAdd(params.index,function(index,data){
+                            let copyData = lodash.merge({}, data, curRow)
+                            theAdd(index+1,copyData)
+                      })
+                }
+
+                if (params.type === 'up'){ // do edit operation
+                    //alert(`行号：${params.index} 姓名：${params.rowData['name']}`)
+                    this.isModify=true
+                    //index=>index-1
+                    //index-1=>index
+                    let index = params.index 
+                    if(index>0){                         
+                        this.swapItems(this.tableData, index, index - 1);
+                    }
+                }
+
+                if (params.type === 'down'){ // do edit operation
+                    //alert(`行号：${params.index} 姓名：${params.rowData['name']}`)
+                    this.isModify=true
+                    
+                    let index = params.index 
+                    if(index< (this.tableData.length-1)){                         
+                        this.swapItems(this.tableData, index, index + 1);
+                    }
+                }
+
+                if(params.type === 'cell-edit'){
+                    if(this.tableSetting.callback && this.tableSetting.callback.celledit) {
+                        this.tableSetting.callback.celledit(this.tableData, params,cellEditDone)
+                     }
+                }                
             },
             initcol(){
                  let head = {
