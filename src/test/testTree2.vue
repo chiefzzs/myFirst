@@ -1,8 +1,10 @@
 
 <template>
   <div  id="testTree">
-      <el-button type="primary" icon="el-icon-plus"   @click="guiAdd(0)">增加</el-button>
+          <el-header style="text-align: left; font-size: 12px">
+            <el-button type="primary" icon="el-icon-plus"   @click="guiAdd(0)">增加</el-button>
             <el-button type="success" icon="el-icon-check"    @click="guiSaveTree">保存</el-button>
+    </el-header>
 <el-tree
   :data="data2"
   show-checkbox
@@ -16,7 +18,8 @@
   :props="defaultProps"  
   >
   <span class="custom-tree-node" slot-scope="{ node, data }">
-        <span  v-if="data.id!=activeId"  >{{ node.label }}</span>
+       
+        <span  v-if="data.id!=activeId"  @click="handleLableClick(data)" >{{ node.label }}</span>
         <template v-if="data.id==activeId" >
               <input     v-model="data.label" /> 
         </template>     
@@ -67,8 +70,11 @@
         console.log(data);
       },
          handleNodeClick(data) {
-              this.activeId=data.id
+               
         console.log(data,this.activeId);
+      }, handleLableClick( data) {
+               this.activeId=data.id
+        console.log("handleLableClick", data,this.activeId);
       },
       getCheckedNodes() {
         console.log(this.$refs.tree.getCheckedNodes());
@@ -104,6 +110,13 @@
         const children = parent.data.children || parent.data;
         const index = children.findIndex(d => d.id === data.id);
         children.splice(index, 1);
+      },changeData(){
+         let data =[] 
+     
+      },
+      guiSaveTree(){
+            console.log(this.data2)
+
       },
     },
 
