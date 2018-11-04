@@ -3,7 +3,8 @@
 
 ## 练习步骤
 
-```nomoml
+
+```nomnoml
 
 [baseTable|
 [gui]
@@ -11,6 +12,7 @@
 [db]
 ]
 ```
+
 
 ```nomnoml
 [<frame>Decorator pattern|
