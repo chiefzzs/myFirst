@@ -30,7 +30,7 @@
     export default{
         props:{
              tableData: {
-                 default:[
+                 default:() =>[
                         {"name":"赵伟","tel":"156*****1987","hobby":"钢琴、书法、唱歌","address":"上海市黄浦区金陵东路569号17楼"},
                         {"name":"李伟","tel":"182*****1538","hobby":"钢琴、书法、唱歌","address":"上海市奉贤区南桥镇立新路12号2楼"},
                         {"name":"孙伟","tel":"161*****0097","hobby":"钢琴、书法、唱歌","address":"上海市崇明县城桥镇八一路739号"},
@@ -39,7 +39,7 @@
                      ]},
             columns:{
 
-            default: [
+            default: () =>[
                         
                         {field: 'name', title:'姓名', isEdit:true,width: 80, titleAlign: 'center',columnAlign:'center',isResize:true},
                         {field: 'tel', title: '手机号码',isEdit:true, width: 150, titleAlign: 'center',columnAlign:'center',isResize:true},
@@ -49,7 +49,7 @@
                     ]
             },
             setting:{
-                default:{
+                default:() =>{
                     callback:{
 
                     }
@@ -58,7 +58,7 @@
         },
         data() {
             return {
-               tableSetting:{},
+               cusSetting:{},
                newRow:{},
                theColumns:[],
                isModify:false,
@@ -70,13 +70,16 @@
                 this.tableData[rowIndex][field] = newValue;   
             },
             cellEditDone(newValue,oldValue,rowIndex,rowData,field){
+                if(newValue==oldValue){
+                    console.log("update newValue== oldValue,so ,dont do update ")
+                }
                 let theUpdate = this.update
-                if(this.tableSetting.callback && this.tableSetting.callback.update)    {
+                if(this.cusSetting.callback && this.cusSetting.callback.update)    {
                     
                     let row = lodash.merge({},rowData)
                     row[field]=newValue
 
-                    this.tableSetting.callback.update( row,function(){
+                    this.cusSetting.callback.update( row,function(){
                          theUpdate( rowIndex,field,newValue)
                     } )
                 }else{
@@ -92,12 +95,12 @@
             
             guiAdd(index ,cb){                             
                
-               if(this.tableSetting.callback && this.tableSetting.callback.add) {
+               if(this.cusSetting.callback && this.cusSetting.callback.add) {
                    
                    if(cb){
-                       this.tableSetting.callback.add( index, cb)
+                       this.cusSetting.callback.add( index, cb)
                    }else{
-                       this.tableSetting.callback.add( index, this.add)
+                       this.cusSetting.callback.add( index, this.add)
                    }
 
                }else{
@@ -110,8 +113,8 @@
               
             },
             guiSaveTable(){
-               if(this.tableSetting.callback && this.tableSetting.callback.saveTable) {
-                   this.tableSetting.callback.saveTable(this.tableData,function(row){
+               if(this.cusSetting.callback && this.cusSetting.callback.saveTable) {
+                   this.cusSetting.callback.saveTable(this.tableData,function(row){
                        console.log("save table",data)
                    })
                }
@@ -131,8 +134,8 @@
 
                 if (params.type === 'delete'){ // do delete operation
                     let theDelete = this.delete                     
-                    if(this.tableSetting.callback && this.tableSetting.callback.delete) {
-                            this.tableSetting.callback.delete(params.rowData ,function(data){
+                    if(this.cusSetting.callback && this.cusSetting.callback.delete) {
+                            this.cusSetting.callback.delete(params.rowData ,function(data){
                                 console.log("delete  table db ....",data)
                                 theDelete(params.index)
                                 
@@ -189,8 +192,8 @@
                 }
 
                 if(params.type === 'cell-edit'){
-                    if(this.tableSetting.callback && this.tableSetting.callback.celledit) {
-                        this.tableSetting.callback.celledit(this.tableData, params,cellEditDone)
+                    if(this.cusSetting.callback && this.cusSetting.callback.celledit) {
+                        this.cusSetting.callback.celledit(this.tableData, params,cellEditDone)
                      }
                 }                
             },
@@ -215,13 +218,14 @@
                 })
             },
             init(){
-                this.tableSetting = lodash.merge(this.tableSetting,this.setting)
+                this.cusSetting = lodash.merge(this.cusSetting,this.setting)
                 this.initrow()
                 this.initcol()
             }
         },
         created() {
             this.init();
+            console.log("baseTable", this.$props)
         },
     }
 

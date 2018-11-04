@@ -6,7 +6,7 @@ import Vue from 'vue'
 // <el-button type="primary" icon="el-icon-edit"      @click="update(rowData,index,field)"></el-button>
 
 //  自定义列组件
-    Vue.component('table-operation',{
+    Vue.component('table-cell-operation',{
         template:`<span>        
          <a href="" @click.stop.prevent="update(rowData,index,field)">编辑</a>&nbsp;
         </span>`,

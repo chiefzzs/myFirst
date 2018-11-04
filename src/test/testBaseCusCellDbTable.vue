@@ -1,11 +1,11 @@
 <template>
   <div class="wrapper" id="testBaseDbTable">
-  <baseDBTable :table="table" :columns="columns"></baseDBTable>
+  <baseCusCellDbTable :table="table" :columns="columns"></baseCusCellDbTable>
 </div>
 </template>
 
 <script>
-import baseDBTable from "../components/baseDbTable"
+import baseCusCellDbTable from "../components/baseCusCellDbTable"
 export default {
   components:{baseDBTable},
   props:{},
@@ -15,9 +15,9 @@ export default {
         columns: [
               {field: 'name', title:'姓名', isEdit:true,width: 80, titleAlign: 'center',columnAlign:'center',isResize:true},
               {field: 'tel', title: '手机号码',isEdit:true, width: 150, titleAlign: 'center',columnAlign:'center',isResize:true},
-               {field: 'info', title: '个人介绍',  width: 150, titleAlign: 'center',columnAlign:'center',isResize:true,
+              {field: 'info', title: '个人介绍',  width: 150, titleAlign: 'center',columnAlign:'center',isResize:true,
                 componentName:'table-cell-operation'
-               },
+              },
            ]
     }
   },

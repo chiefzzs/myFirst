@@ -41,7 +41,8 @@ Vue.use(vueztree)
 
 
 //region  1. table
-import baseTableOpration from "./components/baseTableOpration"
+import   "./components/baseTableOpration"
+import  "./components/baseEditCell"
 //endregion
 
 window.lodash= require('lodash');

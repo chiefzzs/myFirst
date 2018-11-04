@@ -24,12 +24,17 @@ export default {
                 name:"基础测试",      
                 path:"/test"  ,
                 children:[{
-                    name:"基础表格测试",
+                    name:"baseCusCellDbTable测试",
+                    path:"/components/baseCusCellDbTable",
+                    componentName:"baseCusCellDbTable",                    
+                    //component:testBaseTable
+                },{
+                    name:"testBaseTable测试",
                     path:"/test/testBaseTable",
                     componentName:"testBaseTable",                    
                     //component:testBaseTable
                 },{
-                    name:"基础数据库测试",
+                    name:"testDbService测试",
                     path:"/test/testDbService",
                     componentName:"testDbService"
                 },{
@@ -58,6 +63,15 @@ export default {
                 name:"表格测试",
                 path:"/page/demoTable" , 
                 componentName: "DemoTablePage"
+            },{
+                name:"页面功能",
+                path:"/page" , 
+                children:[{
+                    name:"组件管理",
+                    path:"/page/compManage",
+                    componentName: "compManage"
+                }]
+                
             }
         ] 
 }

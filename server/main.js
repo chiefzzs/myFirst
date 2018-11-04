@@ -79,10 +79,7 @@ app.get('/demo/cgi/db/db.py', function (req, res) {
        ret = {"msg":"dot find table","code":-1}
        send( ret ,res );
      } 
-    }
-
-
-   
+    }   
 })
 
 var server = app.listen(8081, function () {
